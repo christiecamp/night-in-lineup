@@ -1,3 +1,5 @@
-div {
-  background-color: red;
+.get-started-links,
+.get-started {
+  border: 5px solid black;
+  width: 25%;
 }

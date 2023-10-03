@@ -1,0 +1,24 @@
+:root {
+    --primary: grey;
+    --secondary: blue;
+    --dark: black;
+  }
+
+* {
+
+  }
+  
+  body {
+    background-color: var(--primary);
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }

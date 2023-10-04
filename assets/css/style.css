@@ -1,7 +1,6 @@
 :root {
     --primary: grey;
-    --secondary: blue;
-    --dark: black;
+
   }
 
 * {
@@ -12,6 +11,7 @@
     background-color: var(--primary);
     margin: 0;
     padding: 0;
+    
   }
   
   h1,
@@ -21,4 +21,5 @@
   h5,
   h6 {
     margin: 0;
+    color: black;
   }

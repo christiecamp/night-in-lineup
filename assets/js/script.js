@@ -7,3 +7,4 @@ const next_btn = details_box.querySelector (".next_btn button")
 //login & set-up
 
 
+

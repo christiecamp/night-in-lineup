@@ -1,15 +1,13 @@
-const start_btn = document.querySelector (".start_btn button");
-const details_box = document.querySelector ("details_box");
+// const start_btn = document.querySelector (".start_btn button");
+// const details_box = document.querySelector ("details_box");
 
-const next_btn = details_box.querySelector (".next_btn button")
+// const next_btn = details_box.querySelector (".next_btn button")
 
 
 //login & set-up
 
 
-var pwShowHide = document.querySelectorAll(".eye-icon");
-var links = document.querySelectorAll(".link");
-var form = document.querySelector(".forms"); // Make sure this variable is consistent
+
 var loginForm = document.getElementById("login-form");
 var signupForm = document.getElementById("signup-form");
 var usernameInput = document.querySelector(".username");
@@ -20,74 +18,75 @@ var loginButton = document.querySelector(".login-button");
 var signupButton = document.querySelector(".signup-button");
 var errorText = document.querySelector(".error-text");
 
-// When the eye icon is clicked to toggle password visibility
-pwShowHide.forEach(eyeIcon => {
-  eyeIcon.addEventListener("click", () => {
-    let pwFields = eyeIcon.parentElement.parentElement.querySelectorAll(".password");
+// Signup logic
+signupForm.addEventListener("submit", e => {
+    e.preventDefault();
 
-    pwFields.forEach(password => {
-      if (password.type === "password") {
-        password.type = "text";
-        eyeIcon.classList.replace("bx-hide", "bx-show");
-      } else {
-        password.type = "password";
-        eyeIcon.classList.replace("bx-show", "bx-hide");
-      }
-    });
-  });
-});
+    const signupUsername = signupUsernameInput.value;
+    const signupPassword = signupPasswordInput.value;
 
-links.forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault(); // Preventing form submit
-    form.classList.toggle("show-signup");
-  });
-});
+    // Validation (you can replace this with your own validation logic)
+    if (signupUsername.length < 4) {
+        errorText.textContent = "Username must be at least 4 characters long.";
+        return;
+    }
 
-loginForm.addEventListener("submit", e => {
-  e.preventDefault();
+    if (signupPassword.length < 6) {
+        errorText.textContent = "Password must be at least 6 characters long.";
+        return;
+    }
 
-  const username = usernameInput.value;
-  const password = passwordInput.value;
+    // Check if the username already exists in local storage
+    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    const userExists = existingUsers.some(user => user.username === signupUsername);
 
-  // Simulate login validation (replace this with your own logic)
-  const storedUsername = localStorage.getItem("username");
-  const storedPassword = localStorage.getItem("password");
+    if (userExists) {
+        errorText.textContent = "Username already exists. Please choose a different one.";
+        return;
+    }
 
-  if (username === storedUsername && password === storedPassword) {
-    // Password is correct, proceed with login
-    localStorage.setItem("username", username);
+    // Create a new user and save it to local storage
+    var newUser = { username: signupUsername, password: signupPassword };
+    existingUsers.push(newUser);
+    localStorage.setItem("users", JSON.stringify(existingUsers));
 
     // Clear previous error message, if any
     errorText.textContent = "";
 
-    // Redirect or perform other actions after successful login
-    window.location.href = "dashboard.html"; // Change the URL as needed
-  } else {
-    // Password is incorrect, display an error message
-    errorText.textContent = "Incorrect username or password. Please try again.";
-  }
+    // Redirect or notify the user of successful signup
+    window.location.href = "signup-success.html"; 
 });
 
-signupForm.addEventListener("submit", e => {
-  e.preventDefault();
+// Login logic
+loginForm.addEventListener("submit", e => {
+    e.preventDefault();
 
-  var signupUsername = signupUsernameInput.value;
-   signupPassword = signupPasswordInput.value;
+    var username = usernameInput.value;
+    var password = passwordInput.value;
 
-  // Implement your signup logic here
-  // You can add validation, create user accounts, and handle errors
+    // Add validation to check if username and password are not empty
+    if (!username || !password) {
+        errorText.textContent = "Username and password are required.";
+        return;
+    }
 
-  // For example, you can save the signup data to local storage for simplicity
-  localStorage.setItem("signupUsername", signupUsername);
-  localStorage.setItem("signupPassword", signupPassword);
+    // Check if the username and password match any user in local storage
+    var existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    var user = existingUsers.find(user => user.username === username && user.password === password);
 
-  // Clear previous error message, if any
-  errorText.textContent = "";
+    if (user) {
+        // Clear previous error message, if any
+        errorText.textContent = "";
 
-  // Redirect or perform other actions after successful signup
-  window.location.href = "dashboard.html"; // Change the URL as needed
+        // Redirect or notify the user of successful login
+        window.location.href = "login-success.html";
+    } else {
+        // Password is incorrect, display an error message
+        errorText.textContent = "Incorrect username or password. Please try again.";
+    }
 });
+
+
 
 
 

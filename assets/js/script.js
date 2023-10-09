@@ -1,4 +1,8 @@
 
+// const start_btn = document.querySelector(".start_btn button");
+// const details_box = document.querySelector("details_box");
+
+
 // const start_btn = document.querySelector (".start_btn button");
 // const details_box = document.querySelector ("details_box");
 
@@ -7,17 +11,48 @@
 const start_btn = document.querySelector(".start_btn button");
 const details_box = document.querySelector("details_box");
 
-const next_btn = details_box.querySelector(".next_btn button");
+
+// const next_btn = details_box.querySelector(".next_btn button");
+// biggest container tied to user holds all nights in
+let bigContainer = [];
+console.log(localStorage.getItem("user"));
 
 // restaurant stuff
 let restaurantArray = [];
 var restaurantDisplay = document.getElementById("restaurantLocal");
 var addressBox = document.getElementById("address");
 var addressButton = document.getElementById("confirmButton");
+var restaurantInput = document.getElementById("foodData");
 // movie stuff
 let movieArray = [];
 var movieList = document.getElementById("movieList");
 var movieButton = document.getElementById("movieButton");
+var movieInput = document.getElementById("movieData");
+
+// title stuff
+var titleInput = document.getElementById("night-title");
+
+// save button
+
+var nightSaveBtn = document.getElementById("nightSave");
+
+// saves the title, movies, restaurant as an array to local
+
+function saveNight() {
+  var dataTransfer = [];
+
+  dataTransfer.push(titleInput.value, movieInput.value, restaurantInput.value);
+  // console.log(titleInput.value);
+  // console.log(movieInput.value);
+  // console.log(restaurantInput.value);
+  bigContainer.push("$  " + dataTransfer + "  $");
+  console.log(bigContainer);
+}
+// local storage save
+function storageSave() {
+  localStorage.setItem("user", bigContainer);
+}
+
 // rapidapi request
 
 const options = {
@@ -27,6 +62,8 @@ const options = {
     "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
   },
 };
+
+// movie data function
 function movieApi() {
   const response = fetch(
     // set to random 15 from most popular
@@ -97,6 +134,12 @@ function callback(results, status) {
     }
   }
 }
+// save button work
+nightSaveBtn.addEventListener("click", () => {
+  saveNight();
+  storageSave();
+});
+
 // movie button works.
 movieButton.addEventListener("click", () => {
   movieArray = [];

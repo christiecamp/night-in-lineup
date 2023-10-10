@@ -213,7 +213,7 @@ document.getElementById("create-btn").addEventListener("click", () => {
 document.getElementById("pickone-return").addEventListener("click", () => {
   // this is where it hides it
 });
-devon code
+// devon code
 var loginForm = document.getElementById("login-form");
 var signupForm = document.getElementById("signup-form");
 var usernameInput = document.querySelector(".username");
@@ -321,11 +321,11 @@ signupForm.addEventListener("submit", (e) => {
   localStorage.setItem("signupPassword", signupPassword);
 });
 
-facebookOption.addEventListener("click", function (event) {
-  event.preventDefault();
-  window.location.href = "https://www.facebook.com/login";
-});
-googleOption.addEventListener("click", function (event) {
-  event.preventDefault();
-  window.location.href = "https://accounts.google.com/login";
-})
+// facebookOption.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   window.location.href = "https://www.facebook.com/login";
+// });
+// googleOption.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   window.location.href = "https://accounts.google.com/login";
+// });

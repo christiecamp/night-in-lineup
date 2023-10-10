@@ -225,6 +225,7 @@ var signupButton = document.querySelector(".signup-button");
 var errorText = document.querySelector(".error-text");
 
 // Signup logic
+
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -264,10 +265,42 @@ signupForm.addEventListener("submit", (e) => {
       return;
     }
 
-    // Create a new user and save it to local storage
-    var newUser = { username: signupUsername, password: signupPassword };
-    existingUsers.push(newUser);
-    localStorage.setItem("users", JSON.stringify(existingUsers));
+signupForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  var signupUsername = signupUsernameInput.value;
+  var signupPassword = signupPasswordInput.value;
+
+  // Validation (you can replace this with your own validation logic)
+  if (signupUsername.length < 4) {
+    errorText.textContent = "Username must be at least 4 characters long.";
+    return;
+  }
+
+  if (signupPassword.length < 6) {
+    errorText.textContent = "Password must be at least 6 characters long.";
+    return;
+  }
+
+  // Check if the username already exists in local storage
+  var existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+  var userExists = existingUsers.some(user => user.username === signupUsername);
+
+  if (userExists) {
+    errorText.textContent = "Username already exists. Please choose a different one.";
+    errorText.style.color = "white";
+    return;
+  }
+
+  // Create a new user and save it to local storage
+  var newUser = { username: signupUsername, password: signupPassword };
+  existingUsers.push(newUser);
+  localStorage.setItem("users", JSON.stringify(existingUsers));
+
+
+  // Clear previous error message, if any
+  errorText.textContent = "";
+
 
     // Clear previous error message, if any
     errorText.textContent = "";
@@ -278,6 +311,14 @@ signupForm.addEventListener("submit", (e) => {
 });
 // Login logic
 loginForm.addEventListener("submit", (e) => {
+
+  // Redirect or notify the user of successful signup
+  window.location.href = "signup-success.html";
+});
+
+// Login logic
+loginForm.addEventListener("submit", e => {
+
   e.preventDefault();
 
   var username = usernameInput.value;
@@ -291,9 +332,13 @@ loginForm.addEventListener("submit", (e) => {
 
   // Check if the username and password match any user in local storage
   var existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+
   var user = existingUsers.find(
     (user) => user.username === username && user.password === password
   );
+
+  var user = existingUsers.find(user => user.username === username && user.password === password);
+
 
   if (user) {
     // Clear previous error message, if any
@@ -304,11 +349,14 @@ loginForm.addEventListener("submit", (e) => {
   } else {
     // Password is incorrect, display an error message
     errorText.textContent = "Incorrect username or password. Please try again.";
+    errorText.style.color = "white";
+
   }
 });
 
-signupForm.addEventListener("submit", (e) => {
+signupForm.addEventListener("submit", e => {
   e.preventDefault();
+
 
   var signupUsername = signupUsernameInput.value;
   signupPassword = signupPasswordInput.value;
@@ -321,11 +369,6 @@ signupForm.addEventListener("submit", (e) => {
   localStorage.setItem("signupPassword", signupPassword);
 });
 
-// facebookOption.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   window.location.href = "https://www.facebook.com/login";
-// });
-// googleOption.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   window.location.href = "https://accounts.google.com/login";
-// });
+
+  var signupUsername = signupUsernameInput
+});

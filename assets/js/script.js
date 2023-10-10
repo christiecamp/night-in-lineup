@@ -1,21 +1,13 @@
-// const start_btn = document.querySelector(".start_btn button");
-// const details_box = document.querySelector("details_box");
-
-// const start_btn = document.querySelector (".start_btn button");
-// const details_box = document.querySelector ("details_box");
-
-// const next_btn = details_box.querySelector (".next_btn button")
-
-const start_btn = document.querySelector(".start_btn button");
-const details_box = document.querySelector(".details_box");
-
-// const next_btn = details_box.querySelector(".next_btn button");
 // biggest container tied to user holds all nights in
 let bigContainer = [];
 if (localStorage.getItem("user")) {
   bigContainer = JSON.parse(localStorage.getItem("user"));
 }
-// console.log(localStorage.getItem("user"));
+
+let displayEl = document.getElementById("create-night-in");
+displayEl.style.display = "none";
+
+let deleteBtn = document.getElementById("delete-night");
 
 // restaurant stuff
 let restaurantArray = [];
@@ -208,11 +200,20 @@ addressButton.addEventListener("click", () => {
 // display night in creator
 document.getElementById("create-btn").addEventListener("click", () => {
   // display night in creation
+  document.getElementById("create-night-in").style.display = "block";
 });
 // hide night in creator
 document.getElementById("pickone-return").addEventListener("click", () => {
   // this is where it hides it
+  document.getElementById("create-night-in").style.display = "none";
 });
+
+// delete nights
+deleteBtn.addEventListener("click", () => {
+  localStorage.removeItem("user");
+  location.reload();
+});
+
 // devon code
 var loginForm = document.getElementById("login-form");
 var signupForm = document.getElementById("signup-form");
@@ -243,64 +244,55 @@ signupForm.addEventListener("submit", (e) => {
     return;
   }
 
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault(); // Preventing form submit
-      form.classList.toggle("show-signup");
-    });
-  });
+  // Check if the username already exists in local storage
+  const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+  const userExists = existingUsers.some(
+    (user) => user.username === signupUsername
+  );
 
-  loginForm.addEventListener("submit", (e) => {
+  if (userExists) {
+    errorText.textContent =
+      "Username already exists. Please choose a different one.";
+    return;
+  }
+
+  signupForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    var signupUsername = signupUsernameInput.value;
+    var signupPassword = signupPasswordInput.value;
+
+    // Validation (you can replace this with your own validation logic)
+    if (signupUsername.length < 4) {
+      errorText.textContent = "Username must be at least 4 characters long.";
+      return;
+    }
+
+    if (signupPassword.length < 6) {
+      errorText.textContent = "Password must be at least 6 characters long.";
+      return;
+    }
+
     // Check if the username already exists in local storage
-    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    const userExists = existingUsers.some(
+    var existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    var userExists = existingUsers.some(
       (user) => user.username === signupUsername
     );
 
     if (userExists) {
       errorText.textContent =
         "Username already exists. Please choose a different one.";
+      errorText.style.color = "white";
       return;
     }
 
-signupForm.addEventListener("submit", e => {
-  e.preventDefault();
+    // Create a new user and save it to local storage
+    var newUser = { username: signupUsername, password: signupPassword };
+    existingUsers.push(newUser);
+    localStorage.setItem("users", JSON.stringify(existingUsers));
 
-  var signupUsername = signupUsernameInput.value;
-  var signupPassword = signupPasswordInput.value;
-
-  // Validation (you can replace this with your own validation logic)
-  if (signupUsername.length < 4) {
-    errorText.textContent = "Username must be at least 4 characters long.";
-    return;
-  }
-
-  if (signupPassword.length < 6) {
-    errorText.textContent = "Password must be at least 6 characters long.";
-    return;
-  }
-
-  // Check if the username already exists in local storage
-  var existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-  var userExists = existingUsers.some(user => user.username === signupUsername);
-
-  if (userExists) {
-    errorText.textContent = "Username already exists. Please choose a different one.";
-    errorText.style.color = "white";
-    return;
-  }
-
-  // Create a new user and save it to local storage
-  var newUser = { username: signupUsername, password: signupPassword };
-  existingUsers.push(newUser);
-  localStorage.setItem("users", JSON.stringify(existingUsers));
-
-
-  // Clear previous error message, if any
-  errorText.textContent = "";
-
+    // Clear previous error message, if any
+    errorText.textContent = "";
 
     // Clear previous error message, if any
     errorText.textContent = "";
@@ -311,14 +303,12 @@ signupForm.addEventListener("submit", e => {
 });
 // Login logic
 loginForm.addEventListener("submit", (e) => {
-
   // Redirect or notify the user of successful signup
   window.location.href = "signup-success.html";
 });
 
 // Login logic
-loginForm.addEventListener("submit", e => {
-
+loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   var username = usernameInput.value;
@@ -337,8 +327,9 @@ loginForm.addEventListener("submit", e => {
     (user) => user.username === username && user.password === password
   );
 
-  var user = existingUsers.find(user => user.username === username && user.password === password);
-
+  var user = existingUsers.find(
+    (user) => user.username === username && user.password === password
+  );
 
   if (user) {
     // Clear previous error message, if any
@@ -350,13 +341,11 @@ loginForm.addEventListener("submit", e => {
     // Password is incorrect, display an error message
     errorText.textContent = "Incorrect username or password. Please try again.";
     errorText.style.color = "white";
-
   }
 });
 
-signupForm.addEventListener("submit", e => {
+signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
 
   var signupUsername = signupUsernameInput.value;
   signupPassword = signupPasswordInput.value;
@@ -367,8 +356,4 @@ signupForm.addEventListener("submit", e => {
   // For example, you can save the signup data to local storage for simplicity
   localStorage.setItem("signupUsername", signupUsername);
   localStorage.setItem("signupPassword", signupPassword);
-});
-
-
-  var signupUsername = signupUsernameInput
 });

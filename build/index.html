@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIGHT-IN LINE-UP</title>
+   <!-- tailwindcss link to output-->
+   <!-- all stylng applied within html, any overrides are listen within the input.css -->
+  <link rel="stylesheet" href="./assets/css/output.css">
+</head>
+
+                   
+<body class="bg-neutral">
+  <!-- nav bar with logo -->
+<header class="flex">
+  <nav>
+    <div class="flex justify-between h-20 px-10 shadow items-center bg-neutral">
+      <div class="flex items-center space-x-8">
+        <div>
+           <!-- logo - hyperlinked back to index (home) -->
+          <a class="flex h-80 mt-20" href="index.html">
+            <img src="./assets/img/main-logo.png"/>
+          </a>
+        </div>
+      </div>
+              <!-- future use links -->
+           <!-- <div class="hidden md:flex justify-around space-x-8">
+                <a href="#" class="hover:text-yellow text-cyan">CREATE LINEUP</a>
+                <a href="#" class="hover:text-yellow text-cyan">VIEW LINEUPS</a>
+              </div> -->
+    </div>
+  </nav>
+</header>
+
+  <!-- login card -->
+<main>
+  <section class="flex container-forms justify-center align-bottom" id="sneaky">
+    <div class="forms py-7 px-8 h-100 bg-fuchsia rounded shadow-xl">
+
+          <!-- login form -->
+          <form id="login-form">
+             <!-- username -->
+            <div class="mb-6">
+              <label for="username" class="block text-neutral font-bold">USERNAME</label>
+              <input type="text" name="username" id="username" placeholder="username" class="username w-full border border-neutral py-2 pl-3 rounded mt-2 outline-none" required>
+            </div>
+            <!-- password -->
+            <div>
+              <label for="password" class="block text-neutral font-bold">PASSWORD</label>
+              <input type="text" name="password" id="password" placeholder="password" class="password w-full border border-neutral py-2 pl-3 rounded mt-2 outline-none" required>
+            </div>
+                <!-- login button -->
+          <button type="submit" class="login-button cursor-pointer py-2 px-4 block mt-6 mb-6 bg-lime text-gray font-bold w-full border border-neutral text-center rounded">LOGIN</button>
+          </form>
+
+          
+          <!-- signup form -->
+          <form id="signup-form">
+            <!-- signup username -->
+            <div class="mb-6">
+              <label for="signup-username" class="block text-neutral font-bold">CREATE USERNAME</label>
+              <input type="text" name="signup-username" id="signup-username" placeholder="username" class="signup-username w-full border py-2 pl-3 rounded mt-2 outline-none" required>
+            </div>
+            <!-- signup password -->
+            <div>
+              <label for="signup-password" class="block text-neutral font-bold">CREATE PASSWORD</label>
+              <input type="text" name="signup-password" id="signup-password" placeholder="password" class="signup-password w-full border border-black-300 py-2 pl-3 rounded mt-2 outline-none" required>
+            </div>
+            <!-- signup button -->
+           <button type="submit" class="signup-button cursor-pointer py-2 px-4 block mt-6 bg-yellow text-gray font-bold w-full  border-neutral text-center rounded" data-dropdown-toggle="dropdownId">SIGN-UP</button>
+          </form>
+    </div>
+    <p class="error-text"></p>
+  </section>
+
+  <!-- original login/signup form html as reference prior to tailwindcss implementation -->
+   <!-- <section class="container forms" id="sneaky">
+        <div class="forms">
+        <form id="signup-form">
+            <h2>Signup</h2>
+            <input type="text" class="signup-username" placeholder="Username" required>
+            <input type="password" class="signup-password" placeholder="Password" required>
+            <button type="submit" class="signup-button">Signup</button>
+        </form>
+        <form id="login-form">
+            <h2>Login</h2>
+            <input type="text" class="username" placeholder="Username" required>
+            <input type="password" class="password" placeholder="Password" required>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+    <p class="error-text"></p>
+     </section> -->
+
+  
+   <!-- background image -->
+  <div class="hero-image" 
+     style="background-image: url('./assets/img/background.png'); height:800px">
+
+
+     <!-- strat containers -->
+
+  <div class="flex container justify-center">
+     <!-- container one -->
+    <section class="create-and-created" id="alsoSneaky">
+      <div class= "bg-yellow opacity-75 hover:opacity-90 rounded shadow-xl py-7 px-8 h-100 w-screen">
+
+        <button class="btn border" id="create-btn">create a night-in</button>
+        <button class="btn border" id="delete-night">delete nights</button>
+
+      <h3 class="pick-one text-fuchsia">YOUR LINE-UPS</h3>
+      <ul class="nights-in-list" id="target">
+      </ul>
+    </div>
+    </section>
+    
+    <!-- page 5 create night in -->
+    <section class="flex container" id="create-night-in">
+      <div class= "bg-lime rounded shadow-xl py-7 px-8 h-100 w-screen">
+    
+      <button class="border" id="nightSave">save</button>
+    
+      <input id="night-title" type="text" placeholder="create a title"></input>
+    
+      <ul class="api-data">
+    
+        
+        <div id="map"></div>
+        <div>
+          <input id="address" type="text" placeholder="enter a location">
+          <input class="border" id="confirmButton" type="button" value="view restaurants">
+          <p id="restaurantLocal">
+          </p>
+          <input id="foodData" type="text" placeholder="write some restaurants here"> 
+          </div>
+          <div>
+          <input class="border" id="movieButton" type="button" value="click for some movies" >
+          <input id="movieData" type ="text" placeholder="write some movies here" >
+          <p id="movieList">
+            <!-- outputs go here -->
+                    </p>
+          </div>  
+        
+        <!--for when we have a games api we can use  -->
+        <!-- <li>game data steam most popular if we have time</li> -->
+    
+        
+      <button class="btn border" id="pickone-return">All Done</button>
+    
+    
+      </div>
+    </section>
+  </div>
+  </div>
+  
+  <!-- </div> -->
+    
+
+
+
+
+<!-- page 2 section, redirect from page 1 signup/login -->
+<!-- <section class="get-started">
+  <button class="btn" id="getting-started">get started button</button>
+
+  <button class="btn" id="know-what-to-do">I know what to do button</button>
+
+  <p class="description-box">description box of what our app does??</p>
+</section> -->
+<!-- end page 2 section -->
+
+
+<!-- start page 4 night in "events/playlists" -->
+
+
+
+
+
+  </main>
+
+    <!-- JavaScript -->
+  
+  <script src="./assets/scripts/script.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDID4ej9YC2P8vUwpG-7MomaiOwMzJq9jk&libraries=places&v=weekly"
+  defer></script>
+
+  <footer>
+  </footer>
+
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- working projects/future development -->
+
+
+
+<!--
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>NIGHT-IN LINE-UP</title>
+      <link rel="stylesheet" href="./assets/css/output.css">
+    </head>
+
+    <body class="bg-neutral"> -->
+
+     <!-- nav bar with logo -->
+      <!-- <nav>
+          <div class="flex justify-between h-20 px-10 shadow items-center bg-neutral"> -->
+            <!-- logo -->
+            <!-- <div class="flex items-center space-x-8">
+              <div>
+                <a class="flex h-80 mt-20"
+                  href="#">
+                <img src="./assets/img/main-logo.png"/>
+                </a>
+              </div>
+            </div> -->
+              <!-- future use links -->
+              <!-- <div class="hidden md:flex justify-around space-x-8">
+                <a href="#" class="hover:text-yellow text-cyan">CREATE LINEUP</a>
+                <a href="#" class="hover:text-yellow text-cyan">VIEW LINEUPS</a>
+              </div>
+      </nav> -->
+
+
+      <!-- login card -->
+      <!-- <main>
+      <div class="h-screen flex justify-center">
+        <div class="py-7 px-8 h-80 mt-80 bg-fuchsia rounded shadow-xl">
+
+          <form action="">
+            <div class="mb-6">
+              <label for="name" class="block text-neutral font-bold">Name:</label>
+              <input type="text" name="name" id="users" placeholder="username" class="w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-yellow :ring-yellow" />
+            </div>
+    
+            <div>
+              <label for="password" class="block text-neutral font-bold">Password:</label>
+              <input type="text" name="password" id="password" placeholder="password" class="w-full border border-black-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-yellow :ring-yellow" />
+            </div>
+            <button type="submit" class="cursor-pointer py-2 px-4 block mt-6 bg-lime text-gray font-bold w-full text-center rounded">Login</button>
+          </form>
+
+        </div>
+      </div>
+
+      <div class="background-image"
+        style="background-image: url('./assets/img/background.png'); height: 800px">
+      </div> -->
+     
+
+      <!-- <section id="LINE-UP" class="px-20 mt-20">
+        <h2 class="text-2xl font-bold text-center mb-6 text-cyan">
+            LINE-UP'S
+        </h2>
+
+        <ul class="list-none mx- my-12 flex flex-col sm:flex-row items-center gap-50">
+            <li
+                class="flex flex-col items-center border border-solid border-fuchsia bg-gray py-6 px-2 rounded-3xl shadow-xl"> -->
+              <!-- add icon -->
+                <!-- <img src="./img/rocketman.png" alt="Explorer" class="w-1/2 mb-6"> -->
+                 <!-- <h3 class="text-3xl text-center text-neutral">View Line-Up's</h3>
+            </li>
+
+            <li
+            class="flex flex-col items-center border border-solid border-fuchsia bg-gray py-6 px-2 rounded-3xl shadow-xl"> -->
+          <!-- add icon -->
+            <!-- <img src="./img/rocketman.png" alt="Explorer" class="w-1/2 mb-6"> -->
+        <!-- <h3 class="text-3xl text-center text-neutral">Create Line-Up's</h3>
+          </li>
+        </ul>
+    </section> -->
+
+    <!-- <div
+    class="block rounded-lg bg-fuchsia">
+    <a href="#!">
+      <img
+        class="rounded-t-lg"
+        src="./assets/img/create.png"
+        alt="" />
+    </a>
+    <div class="p-3">
+      <h5
+        class="mb-2 text-xl font-medium leading-tight text-neutral">
+        Create LineUp
+      </h5>
+      <p class="mb-4 text-base text-neutral">
+        Some quick example text to build on the card title and make up the
+        bulk of the card's content.
+      </p>
+
+      <button
+        type="button"
+        class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+        data-te-ripple-init
+        data-te-ripple-color="light">
+        Button
+      </button>
+      <button
+      type="button"
+      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+      data-te-ripple-init
+      data-te-ripple-color="light">
+      Button
+    </button>
+    </div>
+  </div>
+
+
+  <div
+  class="block rounded-lg bg-fuchsia shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+  <a href="#!">
+    <img
+      class="rounded-t-lg"
+      src="./assets/img/view.png"
+      alt="" />
+  </a>
+  <div class="p-3">
+    <h5
+      class="mb-2 text-xl font-medium leading-tight text-neutral">
+      View LineUp
+    </h5>
+    <p class="mb-4 text-base text-neutral">
+      Some quick example text to build on the card title and make up the
+      bulk of the card's content.
+    </p>
+    <button
+      type="button"
+      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+      data-te-ripple-init
+      data-te-ripple-color="light">
+      Button
+    </button>
+    <button
+      type="button"
+      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+      data-te-ripple-init
+      data-te-ripple-color="light">
+      Button
+    </button>
+  </div>
+</div> -->
+
+
+
+
+
+
+      <!-- background image -->
+      <!-- containers -->
+
+
+    <!-- <div
+      class="flex overflow-hidden rounded-lg justify-center items-center bg-cover bg-no-repeat p-12 text-center"> -->
+      <!-- <div class="bg-[url]"
+      style="background-image: url('./assets/img/background.png'); height: 800px"> -->
+   
+   
+ 
+      <!-- <div class="">
+        <div class="container bg-fuchsia"> -->
+
+        <!-- style="background-color: rgba(242, 221, 241, 0.6)" -->
+
+        <!-- container -->
+
+        <!-- <div class="w-full relative"> -->
+
+        <!-- <div class="flex">
+          <div class="container text-cyan">
+            <h2 class="mb-4 text-xl font-semibold">Heading</h2>
+            <h4 class="mb-4 text-xl font-semibold">Subheading</h4>
+
+            <button
+            type="button"
+            class="rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            data-te-ripple-init
+            data-te-ripple-color="light">
+            Call to action
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div> -->
+
+      <!-- <div
+      class="bg-cover bg-blend-multiply hover:bg-blend-darken"
+      style="background-image: url('./assets/img/background.png'); height: 600px; width:auto">
+      </div> -->
+
+      <!-- container one -->
+      <!-- <div class="max-w-sm">
+        <div class="h-80 mt-80 bg-fuchsia rounded shadow-xl">
+          <form action="">
+          </form>
+
+        </div>
+      </div> -->
+
+
+<!-- container two -->
+      <!-- <div class="">
+        <div class="py-0 px-8 h-80 mt-80  bg-fuchsia rounded shadow-xl">
+          <form action="">
+          </form>
+
+        </div>
+      </div> -->
+

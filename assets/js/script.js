@@ -1,4 +1,5 @@
 // biggest container tied to user holds all nights in
+document.getElementById("alsoSneaky").style.display = "none";
 let bigContainer = [];
 if (localStorage.getItem("user")) {
   bigContainer = JSON.parse(localStorage.getItem("user"));
@@ -298,19 +299,21 @@ signupForm.addEventListener("submit", (e) => {
     errorText.textContent = "";
 
     // Redirect or notify the user of successful signup
-    window.location.href = "signup-success.html";
+    document.getElementById("sneaky").style.display = "none";
   });
 });
 // Login logic
 loginForm.addEventListener("submit", (e) => {
+  document.getElementById("alsoSneaky").style.display = "block";
   // Redirect or notify the user of successful signup
-  window.location.href = "signup-success.html";
+  document.getElementById("sneaky").style.display = "none";
 });
 
 // Login logic
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  document.getElementById("alsoSneaky").style.display = "block";
+  document.getElementById("sneaky").style.display = "none";
   var username = usernameInput.value;
   var password = passwordInput.value;
 
@@ -336,7 +339,7 @@ loginForm.addEventListener("submit", (e) => {
     errorText.textContent = "";
 
     // Redirect or notify the user of successful login
-    window.location.href = "login-success.html";
+    // window.location.href = "login-success.html";
   } else {
     // Password is incorrect, display an error message
     errorText.textContent = "Incorrect username or password. Please try again.";
@@ -356,4 +359,6 @@ signupForm.addEventListener("submit", (e) => {
   // For example, you can save the signup data to local storage for simplicity
   localStorage.setItem("signupUsername", signupUsername);
   localStorage.setItem("signupPassword", signupPassword);
+  document.getElementById("sneaky").style.display = "none";
+  document.getElementById("alsoSneaky").style.display = "block";
 });
